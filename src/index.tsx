@@ -1,15 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+
+// ========================== COMPONENTS ==========================
 import App from './App';
+import SnackbarWrapper from './components/snackbar/snackbar';
+
+// ========================== STORE  ==========================
+import { Provider } from "react-redux";
+import store from './store';
+
 import reportWebVitals from './reportWebVitals';
+
+// ========================== STYLE ==========================
+import './index.css';
+
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <SnackbarWrapper>
+        <App />
+      </SnackbarWrapper>
+    </Provider>
   </React.StrictMode>
 );
 

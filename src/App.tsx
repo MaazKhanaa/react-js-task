@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// ======================== COMPONENT ========================
+import Main from './components/main/main';
+import AuthComponent from './components/auth/auth';
 
-function App() {
+
+// ======================== STORE ========================
+import { RootState, useAppSelector } from './store';
+
+
+// ======================== STYLES ========================
+import './App.css';
+import MainContainer from './components/main/mainContainer';
+
+
+const App: React.FC<any> = () => {
+
+  const { auth } = useAppSelector((state: RootState) => state);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {auth?.isLoggedIn ? (
+        // <Main />
+        <MainContainer />
+      ) : (
+        <AuthComponent />
+      )}
     </div>
   );
 }
